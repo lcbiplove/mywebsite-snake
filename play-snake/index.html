@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <title>JavaScript Snake</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet id="style" type="text/css" href="./css/dark-theme.css" />
+      <link rel="shortcut icon" href="css/images/favicon.png" />
+      <style>
+        .snake-toolbar {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index:10000;
+          padding: 5px;
+        }
+      </style>
+  <script>
+
+  function getTheme () {
+      function changeTheme (Theme) {
+          document.getElementById('style').setAttribute('href', Theme);
+      }
+      var index = document.getElementById("select").selectedIndex;
+      switch (index) {
+          case 0: 
+            changeTheme('css/light-theme.css?' + Math.random());
+            break;
+          case 1: 
+            changeTheme('css/dark-theme.css?' + Math.random());
+            break;            
+          default:
+            changeTheme('css/dark-theme.css?' + Math.random());
+            break;
+      }
+      setTimeout(function() {
+          document.getElementById('game-area').focus();
+      }, 10);
+  }
+  </script>
+  </head>
+  <body>
+      <div class="snake-toolbar">
+        <div style="display:inline-block;margin-right:10px;">
+          <span>Theme:</span>
+          <select onchange="getTheme()" id="select">
+              <option>Light Theme</option>
+              <option selected>Dark Theme</option>
+          </select>
+        </div>
+        <div style="display:inline-block;margin-right:10px;">
+          <span>Mode:</span>
+          <select id="selectMode">
+              <option value="100">Easy</option>
+              <option value="75" selected>Medium</option>
+              <option value="50">Hard</option>
+          </select>
+        <button onclick="go_full_screen()">Full Screen</button><br />
+
+        </div>
+      </div>
+      <div id="mode-wrapper" style="display: inline; width: auto;">
+      </div>
+
+      <div id="game-area" tabindex="0">
+      </div>
+      
+      <div id="game-pad-wrapper">
+        <div class="arrows">
+          <span id="up">&#8593;</span>
+          <span id="right">&#8594;</span>
+          <span id="down">&#8595;</span>
+          <span id="left">&#8592;</span>
+        </div>
+      </div>
+      
+      <script type="text/javascript" src="./js/snake.js"></script>
+      <script type="text/javascript">
+          var mySnakeBoard = new SNAKE.Board(  {
+              boardContainer: "game-area",
+              fullScreen: false
+          });  
+      </script>
+      <script type="text/javascript">
+        function go_full_screen(){
+          var elem = document.documentElement;
+          if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+          } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+          } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+          }
+        }
+
+        window.onresize = function(){
+          hideToolbarLabel();
+        }
+        hideToolbarLabel();
+        function hideToolbarLabel(){
+          var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+          var screen_height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+          if(screen_width<=480){
+            document.querySelectorAll(".snake-toolbar>div>span")[0].style.display="none";
+            document.querySelectorAll(".snake-toolbar>div>span")[1].style.display="none";
+          } 
+          else {
+            document.querySelectorAll(".snake-toolbar>div>span")[0].style.display="inline-block";
+            document.querySelectorAll(".snake-toolbar>div>span")[1].style.display="inline-block";
+          }
+        }
+
+        function gamePadWrapperHeight(){
+          var screen_height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+          var wrapper_height = screen_height - document.getElementById("game-area").offsetHeight - 20;
+          document.getElementById("game-pad-wrapper").style.height=wrapper_height+"px";
+        }
+        gamePadWrapperHeight();
+
+    </script>
+  </body>
+</html>
