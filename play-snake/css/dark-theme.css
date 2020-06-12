@@ -182,7 +182,6 @@ body {
     height: 33%;
     box-sizing: border-box;
     align-content: center;
-    align-items: top;
 }
 #game-pad-wrapper span {
     font-size: 2rem;
@@ -192,48 +191,29 @@ body {
     position: relative;
     flex-shrink: 0;
     width: 50%;
+    text-align: center;
+    box-shadow: 0 0 15px #999;
     color: #333;
 }
 #up, #down {
     margin: 0 auto;
     height: 33%;
     width: 100%;
+    line-height: 33%;
     text-align: center;
 }
-#up::before, #down::before {
+#up::before, #right::before, #down::before, #left::before {
     content: '';
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    left: 50%;
-    box-shadow: 0 0 15px #999;
-    transform: translate(-50%, 0);
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
 }
 #right {
     padding-left: 1.3rem;
 }
-#right::before {
-    content: '';
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    box-shadow: 0 0 15px #999;
-    left: 1rem;
-}
 #left {
     text-align: right;
     padding-right: 1.3rem;
-}
-#left::before {
-    content: '';
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    right: 1rem;
-    box-shadow: 0 0 15px #999;
 }
 #pause {
     display: none;

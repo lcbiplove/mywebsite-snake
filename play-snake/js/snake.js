@@ -108,9 +108,8 @@ SNAKE.Snake = SNAKE.Snake || (function() {
     return function(config) {
 
         if (!config||!config.playingBoard) {return;}
-        if (localStorage.jsSnakeHighScore === undefined) localStorage.setItem('jsSnakeHighScore', 0);
+        if (localStorage.jsSnakeHighScore === undefined) localStorage.setItem('jsSnakeHighScore', 1);
         // ----- private variables -----
-
         var me = this,
             playingBoard = config.playingBoard,
             myId = instanceNumber++,
@@ -764,6 +763,8 @@ SNAKE.Board = SNAKE.Board || (function() {
                 me.resetBoard();
                 me.setBoardState(1);
                 me.getBoardContainer().focus();
+                location.reload();
+                return false;
             };
 
             var kbGameEndShortcut = function (evt) {
@@ -994,9 +995,9 @@ SNAKE.Board = SNAKE.Board || (function() {
 
                     // This removes the listener added at the #listenerX line
                     SNAKE.removeEventListener(elmContainer, "keydown", myKeyListener, false);
-
-                    document.querySelectorAll(".mbl-btns").forEach(function(){
-                        SNAKE.removeEventListener(this, "click", myKeyListener, false);
+                    SNAKE.removeEventListener(document.getElementById("pause"), "click", myKeyListener, false);
+                    document.querySelectorAll("#game-pad-wrapper span").forEach(function(elem){
+                        SNAKE.removeEventListener(elem, "click", myKeyListener, false);
                     });
 
                     myKeyListener = function(evt) {
@@ -1017,15 +1018,13 @@ SNAKE.Board = SNAKE.Board || (function() {
                         evt.cancelBubble = true;
                         if (evt.stopPropagation) {evt.stopPropagation();}
                         if (evt.preventDefault) {evt.preventDefault();}
-                        console.log("Hi");
-
                         return false;
                     };
                     SNAKE.addEventListener( elmContainer, "keydown", myKeyListener, false);
-                    document.querySelectorAll(".mbl-btns").forEach(function(){
-                        SNAKE.addEventListener(this, "click", myKeyListener, false);
+                    document.querySelectorAll("#game-pad-wrapper span").forEach(function(elem){
+                        SNAKE.addEventListener(elem, "click", myKeyListener, false);
                     });
-                    //SNAKE.addEventListener(document.getElementById("pause"), "click", myKeyListener, false);
+                    SNAKE.addEventListener(document.getElementById("pause"), "click", myKeyListener, false);
 
                     mySnake.rebirth();
                     mySnake.handleArrowKeys(keyNum);
@@ -1041,9 +1040,9 @@ SNAKE.Board = SNAKE.Board || (function() {
 
             // Search for #listenerX to see where this is removed
             SNAKE.addEventListener( elmContainer, "keydown", myKeyListener, false);
-
-            document.querySelectorAll(".mbl-btns").forEach(function(){
-                SNAKE.addEventListener(this, "click", myKeyListener, false);
+            SNAKE.addEventListener(document.getElementById("pause"), "click", myKeyListener, false);
+            document.querySelectorAll("#game-pad-wrapper span").forEach(function(elem){
+                SNAKE.addEventListener(elem, "click", myKeyListener, false);
             });
         };
 
@@ -1057,6 +1056,8 @@ SNAKE.Board = SNAKE.Board || (function() {
             elmLengthPanel.innerHTML = "Score: " + mySnake.snakeLength;
             if (mySnake.snakeLength > localStorage.jsSnakeHighScore)
             {
+                var highscore_audio = new Audio('audio/highscore.mp3');
+                highscore_audio.play();
                 localStorage.setItem("jsSnakeHighScore", mySnake.snakeLength);
                 elmHighscorePanel.innerHTML = "Highscore: " + localStorage.jsSnakeHighScore;
             }
@@ -1090,18 +1091,42 @@ SNAKE.Board = SNAKE.Board || (function() {
         config.top = (typeof config.top === "undefined") ? 0 : config.top;
         config.left = (typeof config.left === "undefined") ? 0 : config.left;
         config.width = (typeof config.width === "undefined") ? getClientWidth() - 20 : config.width;
-        config.height = (typeof config.height === "undefined") ? Math.round(getClientHeight()/1.35) : config.height;
+        if(getClientHeight()<=640){
+            config.height = (typeof config.height === "undefined") ? Math.round(getClientHeight()/1.45) : config.height;
+        } else {
+            config.height = (typeof config.height === "undefined") ? Math.round(getClientHeight()/1.35) : config.height;
+        }
 
         if (config.fullScreen) {
             SNAKE.addEventListener(window,"resize", function() {
                 me.setupPlayingField();
             }, false);
         }
-        
+
         me.setBoardState(0);
 
         if (config.boardContainer) {
             me.setBoardContainer(config.boardContainer);
         }
+        document.getElementById("select").onchange = function(){
+            function changeTheme (Theme) {
+                document.getElementById('style').setAttribute('href', Theme);
+            }
+            var index = document.getElementById("select").selectedIndex;
+            switch (index) {
+                case 0: 
+                  changeTheme('css/light-theme.css?' + Math.random());
+                  break;
+                case 1: 
+                  changeTheme('css/dark-theme.css?' + Math.random());
+                  break;            
+                default:
+                  changeTheme('css/light-theme.css?' + Math.random());
+                  break;
+            }
+            setTimeout(function() {
+                document.getElementById('game-area').focus();
+            }, 10);
+        };
     }; // end return function
 })();  

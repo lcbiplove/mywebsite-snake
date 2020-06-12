@@ -6,39 +6,16 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel=stylesheet id="style" type="text/css" href="./css/light-theme.css" />
       <link rel="shortcut icon" href="css/images/favicon.png" />
-  <script>
-
-  function getTheme () {
-      function changeTheme (Theme) {
-          document.getElementById('style').setAttribute('href', Theme);
-      }
-      var index = document.getElementById("select").selectedIndex;
-      switch (index) {
-          case 0: 
-            changeTheme('css/light-theme.css?' + Math.random());
-            break;
-          case 1: 
-            changeTheme('css/dark-theme.css?' + Math.random());
-            break;            
-          default:
-            changeTheme('css/light-theme.css?' + Math.random());
-            break;
-      }
-      setTimeout(function() {
-          document.getElementById('game-area').focus();
-      }, 10);
-  }
-  </script>
   </head>
   <body>
       <div class="snake-toolbar">
         <div>
           <span>Theme:</span>
-          <select onchange="getTheme()" id="select">
+          <select id="select">
               <option selected>Light</option>
               <option>Dark</option>
           </select>
-          <button id="pause" class="mbl-btns">Pause</button>
+          <button id="pause">Pause</button>
         </div>
         <div>
           <span>Mode:</span>
@@ -53,82 +30,17 @@
       </div>
       <div id="mode-wrapper" style="display: inline; width: auto;">
       </div>
-
       <div id="game-area" tabindex="0">
       </div>
-      
       <div id="game-pad-wrapper">
-        <span id="up" class="mbl-btns">&#8593;</span>
+        <span id="up">&#8593;</span>
         <div>
-          <span id="left" class="mbl-btns">&#8592;</span>
-          <span id="right" class="mbl-btns">&#8594;</span>
+          <span id="left">&#8592;</span>
+          <span id="right">&#8594;</span>
         </div>
-        <span id="down" class="mbl-btns">&#8595;</span>
+        <span id="down">&#8595;</span>
       </div>
-      
       <script type="text/javascript" src="./js/snake.js"></script>
-      <script type="text/javascript">
-          function is_touch_device() {
-              var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
-              var mq = function (query) {
-                  return window.matchMedia(query).matches;
-              }
-              if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-                  return true;
-              }
-              var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
-              return mq(query);
-          }
-          if(is_touch_device()){
-            var mySnakeBoard = new SNAKE.Board({
-                boardContainer: "game-area",
-                fullScreen: false
-            });
-          } else {
-            var mySnakeBoard = new SNAKE.Board({
-                boardContainer: "game-area",
-                fullScreen: true
-            });
-          }
-      </script>
-      <script type="text/javascript">
-        function go_full_screen(){
-          var elem = document.documentElement;
-          if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-          } else if (elem.msRequestFullscreen) {
-            elem.msRequestFullscreen();
-          } else if (elem.mozRequestFullScreen) {
-            elem.mozRequestFullScreen();
-          } else if (elem.webkitRequestFullscreen) {
-            elem.webkitRequestFullscreen();
-          }
-        }
-
-        window.onresize = function(){
-          hideToolbarLabel();
-        }
-        
-        hideToolbarLabel();
-        function hideToolbarLabel(){
-          var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-          var screen_height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-          if(screen_width<=480){
-            document.querySelectorAll(".snake-toolbar>div>span")[0].style.display="none";
-            document.querySelectorAll(".snake-toolbar>div>span")[1].style.display="none";
-          } 
-          else {
-            document.querySelectorAll(".snake-toolbar>div>span")[0].style.display="inline-block";
-            document.querySelectorAll(".snake-toolbar>div>span")[1].style.display="inline-block";
-          }
-        }
-
-        function gamePadWrapperHeight(){
-          var screen_height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-          var wrapper_height = screen_height - document.getElementById("game-area").offsetHeight - 20;
-          document.getElementById("game-pad-wrapper").style.height=wrapper_height+"px";
-        }
-        gamePadWrapperHeight();
-    </script>
+      <script type="text/javascript" src="js/mysnake.js"></script>
   </body>
 </html>
