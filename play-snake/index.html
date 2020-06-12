@@ -4,17 +4,8 @@
       <meta charset="utf-8">
       <title>JavaScript Snake</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet id="style" type="text/css" href="./css/dark-theme.css" />
+      <link rel=stylesheet id="style" type="text/css" href="./css/light-theme.css" />
       <link rel="shortcut icon" href="css/images/favicon.png" />
-      <style>
-        .snake-toolbar {
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index:10000;
-          padding: 5px;
-        }
-      </style>
   <script>
 
   function getTheme () {
@@ -30,7 +21,7 @@
             changeTheme('css/dark-theme.css?' + Math.random());
             break;            
           default:
-            changeTheme('css/dark-theme.css?' + Math.random());
+            changeTheme('css/light-theme.css?' + Math.random());
             break;
       }
       setTimeout(function() {
@@ -41,14 +32,15 @@
   </head>
   <body>
       <div class="snake-toolbar">
-        <div style="display:inline-block;margin-right:10px;">
+        <div>
           <span>Theme:</span>
           <select onchange="getTheme()" id="select">
-              <option>Light Theme</option>
-              <option selected>Dark Theme</option>
+              <option selected>Light</option>
+              <option>Dark</option>
           </select>
+          <button id="pause" class="mbl-btns">Pause</button>
         </div>
-        <div style="display:inline-block;margin-right:10px;">
+        <div>
           <span>Mode:</span>
           <select id="selectMode">
               <option value="100">Easy</option>
@@ -66,20 +58,38 @@
       </div>
       
       <div id="game-pad-wrapper">
-        <div class="arrows">
-          <span id="up">&#8593;</span>
-          <span id="right">&#8594;</span>
-          <span id="down">&#8595;</span>
-          <span id="left">&#8592;</span>
+        <span id="up" class="mbl-btns">&#8593;</span>
+        <div>
+          <span id="left" class="mbl-btns">&#8592;</span>
+          <span id="right" class="mbl-btns">&#8594;</span>
         </div>
+        <span id="down" class="mbl-btns">&#8595;</span>
       </div>
       
       <script type="text/javascript" src="./js/snake.js"></script>
       <script type="text/javascript">
-          var mySnakeBoard = new SNAKE.Board(  {
-              boardContainer: "game-area",
-              fullScreen: false
-          });  
+          function is_touch_device() {
+              var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+              var mq = function (query) {
+                  return window.matchMedia(query).matches;
+              }
+              if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+                  return true;
+              }
+              var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
+              return mq(query);
+          }
+          if(is_touch_device()){
+            var mySnakeBoard = new SNAKE.Board({
+                boardContainer: "game-area",
+                fullScreen: false
+            });
+          } else {
+            var mySnakeBoard = new SNAKE.Board({
+                boardContainer: "game-area",
+                fullScreen: true
+            });
+          }
       </script>
       <script type="text/javascript">
         function go_full_screen(){
@@ -98,6 +108,7 @@
         window.onresize = function(){
           hideToolbarLabel();
         }
+        
         hideToolbarLabel();
         function hideToolbarLabel(){
           var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -118,7 +129,6 @@
           document.getElementById("game-pad-wrapper").style.height=wrapper_height+"px";
         }
         gamePadWrapperHeight();
-
     </script>
   </body>
 </html>

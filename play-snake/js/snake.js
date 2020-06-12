@@ -109,7 +109,6 @@ SNAKE.Snake = SNAKE.Snake || (function() {
 
         if (!config||!config.playingBoard) {return;}
         if (localStorage.jsSnakeHighScore === undefined) localStorage.setItem('jsSnakeHighScore', 0);
-
         // ----- private variables -----
 
         var me = this,
@@ -252,9 +251,6 @@ SNAKE.Snake = SNAKE.Snake || (function() {
             if (isDead || isPaused) {return;}
 
             var snakeLength = me.snakeLength;
-
-            //console.log("lastmove="+lastMove);
-            //console.log("dir="+keyNum);
 
             let directionFound = -1;
 
@@ -722,9 +718,11 @@ SNAKE.Board = SNAKE.Board || (function() {
 
             var welcomeTxt = document.createElement("div");
             var fullScreenText = "";
+            document.getElementById("game-pad-wrapper").style.display = "flex";
             if (config.fullScreen) {
                 fullScreenText = "On Windows, press F11 to play in Full Screen mode.";
-            }
+                document.getElementById("game-pad-wrapper").style.display = "none";
+            } 
             welcomeTxt.innerHTML = "<p></p>Use the <strong>arrow keys</strong> on your keyboard to play the game. " + fullScreenText + "<p></p>";
             var welcomeStart = document.createElement("button");
             welcomeStart.appendChild(document.createTextNode("Play Game"));
@@ -733,6 +731,7 @@ SNAKE.Board = SNAKE.Board || (function() {
                 tmpElm.style.display = "none";
                 me.setBoardState(1);
                 me.getBoardContainer().focus();
+                document.getElementById("pause").style.display="inline-block";                
             };
 
             var kbShortcut = function(evt) {
@@ -809,8 +808,10 @@ SNAKE.Board = SNAKE.Board || (function() {
             mySnake.setPaused(val);
             if (isPaused) {
                 elmPauseScreen.style.display = "block";
+                document.getElementById("pause").innerHTML="Play";
             } else {
                 elmPauseScreen.style.display = "none";
+                document.getElementById("pause").innerHTML="Pause";
             }
         };
         me.getPaused = function() {
@@ -897,7 +898,6 @@ SNAKE.Board = SNAKE.Board || (function() {
         * @method setupPlayingField
         */
         me.setupPlayingField = function () {
-
             if (!elmPlayingField) {createBoardElements();} // create playing field
 
             // calculate width of our game container
@@ -936,10 +936,10 @@ SNAKE.Board = SNAKE.Board || (function() {
             var pLabelTop = me.getBlockHeight() + fHeight + Math.round((bottomPanelHeight - 30)/2) + "px";
 
             elmLengthPanel.style.top = pLabelTop;
-            elmLengthPanel.style.left = 30 + "px";
+            elmLengthPanel.style.left = "0px";
 
             elmHighscorePanel.style.top = pLabelTop;
-            elmHighscorePanel.style.right = "20px";
+            elmHighscorePanel.style.right = "0px";
 
             me.grid = [];
             var numBoardCols = fWidth / me.getBlockWidth() + 2;
@@ -957,24 +957,59 @@ SNAKE.Board = SNAKE.Board || (function() {
             }
 
             myFood.randomlyPlaceFood();
+            
+            function keyGet(id_name){
+                var key = 0;
+                switch (id_name) {
+                    case "up":
+                        key=38;
+                        break;
+                    case "right":
+                        key=39;
+                        break;
+                    case "down":
+                        key=40;
+                        break;
+                    case "left":
+                        key=37;
+                        break;
+                    case "pause":
+                        key=32;
+                        break;
+                    default:
+                        break;
+                }
+                return key;
+            }
 
             myKeyListener = function(evt) {
                 if (!evt) var evt = window.event;
                 var keyNum = (evt.which) ? evt.which : evt.keyCode;
+                if(evt.target.id == "up" || evt.target.id == "right" || evt.target.id == "down" || evt.target.id == "left" || evt.target.id=="pause"){
+                    keyNum = keyGet(evt.target.id);
+                }
+
                 if (me.getBoardState() === 1) {
                     if ( !(keyNum >= 37 && keyNum <= 40) && !(keyNum === 87 || keyNum === 65 || keyNum === 83 || keyNum === 68)) {return;} // if not an arrow key, leave
 
                     // This removes the listener added at the #listenerX line
                     SNAKE.removeEventListener(elmContainer, "keydown", myKeyListener, false);
 
+                    document.querySelectorAll(".mbl-btns").forEach(function(){
+                        SNAKE.removeEventListener(this, "click", myKeyListener, false);
+                    });
+
                     myKeyListener = function(evt) {
                         if (!evt) var evt = window.event;
                         var keyNum = (evt.which) ? evt.which : evt.keyCode;
-
-                        //console.log(keyNum);
+                        if(evt.target.id == "up" || evt.target.id == "right" || evt.target.id == "down" || evt.target.id == "left" || evt.target.id=="pause"){
+                            keyNum = keyGet(evt.target.id);
+                        }
                         if (keyNum === 32) {
-							if(me.getBoardState()!=0)
-                                me.setPaused(!me.getPaused());
+                            if(me.getBoardState()!=0) me.setPaused(!me.getPaused());
+                            setTimeout(function() {
+                                document.getElementById('game-area').focus();
+                            }, 10);
                         }
 
                         mySnake.handleArrowKeys(keyNum);
@@ -982,9 +1017,16 @@ SNAKE.Board = SNAKE.Board || (function() {
                         evt.cancelBubble = true;
                         if (evt.stopPropagation) {evt.stopPropagation();}
                         if (evt.preventDefault) {evt.preventDefault();}
+                        console.log("Hi");
+
                         return false;
                     };
                     SNAKE.addEventListener( elmContainer, "keydown", myKeyListener, false);
+                    document.querySelectorAll(".mbl-btns").forEach(function(){
+                        SNAKE.addEventListener(this, "click", myKeyListener, false);
+                    });
+                    //SNAKE.addEventListener(document.getElementById("pause"), "click", myKeyListener, false);
+
                     mySnake.rebirth();
                     mySnake.handleArrowKeys(keyNum);
                     me.setBoardState(2); // start the game!
@@ -999,6 +1041,10 @@ SNAKE.Board = SNAKE.Board || (function() {
 
             // Search for #listenerX to see where this is removed
             SNAKE.addEventListener( elmContainer, "keydown", myKeyListener, false);
+
+            document.querySelectorAll(".mbl-btns").forEach(function(){
+                SNAKE.addEventListener(this, "click", myKeyListener, false);
+            });
         };
 
         /**
@@ -1051,12 +1097,11 @@ SNAKE.Board = SNAKE.Board || (function() {
                 me.setupPlayingField();
             }, false);
         }
-
+        
         me.setBoardState(0);
 
         if (config.boardContainer) {
             me.setBoardContainer(config.boardContainer);
         }
-
     }; // end return function
 })();  

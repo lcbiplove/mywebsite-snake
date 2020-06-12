@@ -1,22 +1,35 @@
 body {
 	margin:0px;
 	padding:0px;
-    background-color: aquamarine;
+    background-color: teal;
+    color: #eee;
 }
 
 #game-area {
 	margin:10px;
 	padding:0px;
-    background-color: aquamarine;
+    background-color: teal;
 }
 
 #mode-wrapper {
-    color: #111;
+    color: #eee;
     font-family: Verdana, arial, helvetica, sans-serif;
     font-size: 14px;
 }
 
 #game-area:focus { outline: none; }
+
+.snake-toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index:10000;
+    padding: 5px;
+}
+
+.snake-toolbar>div {
+    display: inline-block;
+}
 
 .snake-pause-screen {
     font-family: Verdana, arial, helvetica, sans-serif;
@@ -30,17 +43,18 @@ body {
     margin-top:-40px;
     margin-left:-150px;
     display:none;
-    background-color:black;
+    background-color:teal;
     color:white;
+    box-shadow: 0 0 25px #999;
 }
 
 .snake-panel-component {
     position: absolute;
     font-family: Verdana, arial, helvetica, sans-serif;
     font-size: 14px;
-    color: #111;
+    color: #eee;
     text-align: center;
-    background-color: aquamarine;
+    background-color: teal;
     padding: 8px;
     margin: 0px;
 }
@@ -50,7 +64,7 @@ body {
     padding: 0px;
     background-color: #FF0000;
     position: absolute;
-    border: 0px solid #111;
+    border: 0px solid #fff;
     background-repeat: no-repeat;
 }
 
@@ -65,7 +79,7 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: orangered;
-    border: 0px solid #111;
+    border: 0px solid #fff;
     position: absolute;
     border-radius: 50%;
 }
@@ -97,8 +111,9 @@ body {
     margin: 0px;
     padding: 0px;
     position: absolute;
-    background-color: #111;
-    border: 0px solid #111;
+    background-color: #222;
+    border: 1px solid #999;
+    box-sizing: border-box;
 }
 
 .snake-game-container {
@@ -107,16 +122,16 @@ body {
     border-width: 0px;
     border-style: none;
     zoom: 1;
-    background-color: aquamarine;
+    background-color: teal;
     position: relative;
 }
 
 .snake-welcome-dialog {
     padding: 8px;
     margin: 0px;
-    background-color: aquamarine;
+    background-color: teal;
     box-shadow: 0 0 25px #999;
-    color: #111;
+    color: #eee;
     font-family: Verdana, arial, helvetica, sans-serif;
     font-size: 14px;
     position: absolute;
@@ -133,9 +148,9 @@ body {
 .snake-try-again-dialog, .snake-win-dialog {
     padding: 8px;
     margin: 0px;
-    background-color: aquamarine;
+    background-color: teal;
+    color: #eee;
     box-shadow: 0 0 25px #999;
-    color: #111;
     font-family: Verdana, arial, helvetica, sans-serif;
     font-size: 14px;
     position: absolute;
@@ -156,40 +171,70 @@ body {
 }
 #game-pad-wrapper {
     position: relative;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
 }
-.arrows {
+#game-pad-wrapper div {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 33%;
+    box-sizing: border-box;
+    align-content: center;
+    align-items: top;
+}
+#game-pad-wrapper span {
+    font-size: 2rem;
+    display: inline-block;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    flex-shrink: 0;
+    width: 50%;
+    color: #333;
+}
+#up, #down {
+    margin: 0 auto;
+    height: 33%;
+    width: 100%;
     text-align: center;
 }
-.arrows span {
-    padding: 0;
-    margin: 0;
-    font-size: 1.85em;
-    width: 1.85em;
-    height: 1.85em;
-    line-height: 1.85em;
-    border: 1px solid #000;
-    border-radius: 50%;
-    display: inline-block;
+#up::before, #down::before {
+    content: '';
     position: absolute;
-    cursor: pointer;
-}
-#up {
-    top: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     left: 50%;
+    box-shadow: 0 0 15px #999;
     transform: translate(-50%, 0);
 }
 #right {
-    top: 50%;
-    right: 25%;
-    transform: translate(25%, -50%);
+    padding-left: 1.3rem;
 }
-#down {
-    bottom: 1px;
-    left: 50%;
-    transform: translate(-50%, 0);
+#right::before {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #999;
+    left: 1rem;
 }
 #left {
-    top: 50%;
-    left: 25%;
-    transform: translate(-25%, -50%);
+    text-align: right;
+    padding-right: 1.3rem;
+}
+#left::before {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    right: 1rem;
+    box-shadow: 0 0 15px #999;
+}
+#pause {
+    display: none;
 }
