@@ -1,8 +1,7 @@
 body {
     margin: 0;
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
-/*
 .content {
     display: flex;
     justify-content: center;
@@ -17,4 +16,47 @@ body {
     display: inline-block;
     border: 2px solid #000;
 }
-*/
+.content>span {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 0 20px #ddd;
+    margin-top: 15px;
+    border-radius: 50%;
+    animation: load 2s alternate ease-in-out infinite;
+    position: relative;
+}
+.content>span::before {
+    content: 'Coming soon...';
+    position: absolute;
+    font-size: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@keyframes load {
+    from {
+        transform: scale(0);
+    } to {
+        transform: scale(1);
+    }
+}
+a {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+}
+a::before {
+    content: url('play-snake/css/images/snake-icon.png');
+    position: relative;
+    top: 1px;
+}
+a:hover {
+    background-color: #efefef;
+}
