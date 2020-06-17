@@ -3,3 +3,5 @@ ErrorDocument 401 https://biplovelc.me/errors
 ErrorDocument 403 https://biplovelc.me/errors
 ErrorDocument 404 https://biplovelc.me/errors/not-found
 ErrorDocument 500 https://biplovelc.me/errors
+
+Redirect permanent / https://biplovelc.me
