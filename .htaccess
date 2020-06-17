@@ -1,0 +1,5 @@
+ErrorDocument 400 errors
+ErrorDocument 401 errors
+ErrorDocument 403 errors
+ErrorDocument 404 errors/not-found
+ErrorDocument 500 errors
