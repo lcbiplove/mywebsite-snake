@@ -3,20 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio website by biplove lamichhane with javascript snake game">
     <meta name="author" content="Biplove Lamichhane">
-    <meta name="description" content="Website of Biplove lamichhane(lc) - full stack web developer.">
-    <meta name="keywords" content="web-development, nepal-based, biplove lc, biplove lamichhane, javascript snake">
-    <title>Home | Biplove Lamichhane</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="keywords" content="biplove lamichhane, portfolio, web developer, nepal based, full stack developer, biplovelc">
+    <title>Biplove Lamichhane | Portfolio</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js"></script>
 </head>
-<body>
-    <div class="content">
-        <div>
-            <h1>Biplove Lamichhane</h1>
+<body style="overflow: hidden;">
+    <h1 class="hide">biplovlc</h1>
+    <header>
+        <nav>
+            <div class="logo-div">
+                <a href="/" title="Home">
+                    <img src="images/lower-logo.png" alt="Site Logo"/>
+                    <img src="images/upper-logo.png" alt="Site Logo"/>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="#about" class="active-page">About</a>
+                <a href="#work">Works</a>
+                <a href="#contact">Contact</a>
+                <a href="play-snake/">Play game</a>
+                <div id="menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div id="menu-content">
+                <a href="#about">About</a>
+                <a href="#work">Works</a>
+                <a href="#contact">Contact</a>
+                <a href="play-snake/">Play game</a>
+            </div>
+            <div class="topic-top"></div>
+        </nav>
+    </header>
+
+    <section>
+        <div id="intro">
+            <div>
+                <h1>
+                    Biplove Lamichhane
+                </h1>
+                <div>
+                    I'm a Nepal based web developer. I do both frontend and backend development.
+                </div>
+            </div>
         </div>
-        <span></span>
-    </div>
-    <a href="play-snake" title="Play Game">
-    </a>
+        <div id="about" class="page">
+            <div>
+                <span>I have been working in the field of web development for two years. I have built websites using HTML, CSS, Javascript, Bootstrap,
+                    Jquery and many more in the frontend, and Django web framework and PHP in the backend. But, there is no limitation in learning new tools
+                    if needed.
+                </span>
+                <span>
+                    I am young, energetic, hard-working developer ready to built lifechanging and inspiring web projects. Personally, I love coding, watching movies.
+                    I enjoy the beauty of nature.
+                </span>
+                <span>
+                    Always happy to work with people, who cares what they want to do.
+                </span>
+            </div>
+        </div>
+        <div id="work" class="page">
+            <div class="btext">
+                <span class="title">btext.cf</span>
+                <div>
+                    <div class="desc-n-link">
+                        <span>I am happy to have collaborated with this amazing team. I am glad that I am part of the extraordinary
+                            concept.</span>
+                        <a href="http://btext.cf/" target="_blank"><span>View</span></a>
+                    </div>
+                    <img src="images/btext.jpg" width=300 alt="Landing page of btext"/>
+                </div>
+            </div>
+            <div class="biplovelc">
+                <span class="title">biplove.cf</span>
+                <div>
+                    <img src="images/biplove.jpg" width=300 alt="Landing page of biplovelc"/>
+                    <div class="desc-n-link">
+                        <span>A simple, but useful website developed by myself in very short period of time. Mainly for sharing files.</span> 
+                        <a href="http://biplove.cf/" target="_blank"><span>View</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="contact" class="page">
+            <div class="many-more">
+                <span class="title">Many More</span>
+                <div>
+                    <span>Stay tuned to see more of my works which will be released soon.</span>
+                    <a href="https://github.com/lcbiplove/" target="_blank"><img src="images/github.png" alt=""> Github</a>
+                </div>
+            </div>
+            <div class="contact">
+                <div class="form">
+                    <form action="javascript: void(0);" method="POST" class="w-100">
+                        <div>
+                            <input type="text" name="name" id="nameId" placeholder="Name..."/>
+                        </div>
+                        <div>
+                            <input type="email" name="email" id="emailId" placeholder="Email..."/>
+                        </div>
+                        <div>
+                            <textarea name="message" id="messageId" cols="30" rows="10" placeholder="Your valuable message..."></textarea>
+                        </div>
+                        <button><span>Send</span></button>
+                    </form>
+                </div>
+                <div class="form-or">
+                    <span>Or,</span>
+                    <div class="links">
+                        <div class="w-100">
+                            <a href="https://facebook.com/biplove.me/"><img src="images/facebook.png" alt="facebook-pic">Facebook</a>
+                        </div>
+                        <div class="w-100">
+                            <a href="https://instagram.com/biplove.py/"><img src="images/instagram.png" alt="instagram-pic">Instagram</a>
+                        </div>
+                        <div class="w-100">
+                            <a href="mailto:lcbiplove1@gmail.com"><img src="images/gmail.png" alt="gmail-pic">Gmail</a>
+                        </div>
+                        <div class="w-100">
+                            <a href="https://github.com/lcbiplove/"><img src="images/github.png" alt="github-pic">Github</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pop-up">
+            <div>
+                <img src="images/logo-small.png" alt="logo">
+            </div>
+        </div>
+        <footer>
+            &copy; Copyright 2020 - Biplove Lamichhane
+        </footer>
+    </section>
 </body>
 </html>
