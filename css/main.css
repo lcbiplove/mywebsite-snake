@@ -470,7 +470,6 @@ nav {
 }
 .contact .links a:hover {
     transform: scale(1.1);
-    font-weight: 1000;
 }
 footer {
     padding: 2em 5px;
