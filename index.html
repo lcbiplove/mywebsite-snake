@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio website by biplove lamichhane with javascript snake game">
     <meta name="author" content="Biplove Lamichhane">
-    <meta name="keywords" content="biplove lamichhane, portfolio, web developer, nepal based, full stack developer, biplovelc">
+    <meta name="keywords" content="biplove lamichhane, np, portfolio, web developer, nepal based, django developer, full stack developer, biplovelc">
     <title>Biplove Lamichhane | Portfolio</title>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/main.js"></script>
 </head>
 <body style="overflow: hidden;">
-    <h1 class="hide">biplovlc</h1>
+    <h1 class="hide">Biplove Lamichhane</h1>
+    <h1 class="hide">Nepal Based Developer</h1>
+    <h1 class="hide">Django</h1>
     <header>
         <nav>
             <div class="logo-div">
@@ -23,7 +25,7 @@
             </div>
             <div class="nav-links">
                 <a href="#about" class="active-page">About</a>
-                <a href="#work">Works</a>
+                <a href="#work">Projects</a>
                 <a href="#contact">Contact</a>
                 <a href="play-snake/">Play game</a>
                 <div id="menu">
@@ -34,7 +36,7 @@
             </div>
             <div id="menu-content">
                 <a href="#about">About</a>
-                <a href="#work">Works</a>
+                <a href="#work">Projects</a>
                 <a href="#contact">Contact</a>
                 <a href="play-snake/">Play game</a>
             </div>
@@ -55,7 +57,7 @@
         </div>
         <div id="about" class="page">
             <div>
-                <span>I have been working in the field of web development for two years. I have built websites using HTML, CSS, Javascript, Bootstrap,
+                <span>I have been working in the field of web development for four years. I have built websites using HTML, CSS, Javascript, Bootstrap,
                     Jquery and many more in the frontend, and Django web framework and PHP in the backend. But, there is no limitation in learning new tools
                     if needed.
                 </span>
@@ -69,24 +71,79 @@
             </div>
         </div>
         <div id="work" class="page">
-            <div class="btext">
-                <span class="title">btext.cf</span>
+            <div class="landing">
+                <span class="title">Landing Page</span>
                 <div>
                     <div class="desc-n-link">
-                        <span>I am happy to have collaborated with this amazing team. I am glad that I am part of the extraordinary
-                            concept.</span>
-                        <a href="http://btext.cf/" target="_blank"><span>View</span></a>
+                        <span>It is a one page landing page responsive design build with html and css only with very few javascript.</span>
+                        <div class="links-view-code">
+                            <a href="https://lcbiplove.github.io/design-final/" target="_blank"><span>Demo</span></a>
+                            <a href="https://github.com/lcbiplove/design-final" target="_blank"><span>Code</span></a>
+                        </div>
                     </div>
-                    <img src="images/btext.jpg" width=300 alt="Landing page of btext"/>
+                    <img src="images/works/digital-landing-page.png" width=300 alt="Landing page"/>
                 </div>
             </div>
-            <div class="biplovelc">
-                <span class="title">biplove.cf</span>
+            <div class="slider">
+                <span class="title">Js Slider</span>
                 <div>
-                    <img src="images/biplove.jpg" width=300 alt="Landing page of biplovelc"/>
+                    <img src="images/works/slider.png" width=300 alt="Carousel"/>
                     <div class="desc-n-link">
-                        <span>A simple, but useful website developed by myself in very short period of time. Mainly for sharing files.</span> 
-                        <a href="http://biplove.cf/" target="_blank"><span>View</span></a>
+                        <span>A carousel plugin built on vanilla javascript. Easy to add with some configuration setting to import inside any project.</span> 
+                        <div class="links-view-code">
+                            <a href="https://lcbiplove.github.io/lf-slider/" target="_blank"><span>Demo</span></a>
+                            <a href="https://github.com/lcbiplove/lf-slider/" target="_blank"><span>Code</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ball-collision">
+                <span class="title">Ball Collision</span>
+                <div>
+                    <div class="desc-n-link">
+                        <span>A ball collision plugin build on vanilla javascript. You can change some configuration from the plugin as your required need.</span> 
+                        <div class="links-view-code">
+                            <a href="https://lcbiplove.github.io/lf-ball-collision/" target="_blank"><span>Demo</span></a>
+                            <a href="https://github.com/lcbiplove/lf-ball-collision/" target="_blank"><span>Code</span></a>
+                        </div>
+                    </div>
+                    <img src="images/works/ball-collision.png" width=300 alt="Ball Collision"/>
+                </div>
+            </div>
+            <div class="efoodbasket">
+                <span class="title">Ecommerce Website</span>
+                <div>
+                    <img src="images/works/efoodbasket.png" width=300 alt="efoodbasket"/>
+                    <div class="desc-n-link">
+                        <span>An ecommerce website build with html, js, css in the frontend and php with oracle database in the backend. Paypal Payment integration, Notification system is also added with authentication based on email verification, reset password and so on.</span> 
+                        <div class="links-view-code">
+                            <a href="https://lcbiplove.github.io/e-food-basket/" target="_blank"><span>Frontend Demo</span></a>
+                            <a href="https://github.com/lcbiplove/efoodbasket/" target="_blank"><span>Code</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hamikisaan">
+                <span class="title">Fresh Products Portal</span>
+                <div>
+                    <div class="desc-n-link">
+                        <span>An online portal to add fresh food products build on html, jquery, css in frontend and django framework in the backend. Special feature like websocket is used to pull the realtime notifications along with english and nepali language support.</span> 
+                        <div class="links-view-code">
+                            <a href="https://github.com/lcbiplove/frutonp/" target="_blank"><span>Code</span></a>
+                        </div>
+                    </div>
+                    <img src="images/works/frutonp.png" width=300 alt="hamikisaan"/>
+                </div>
+            </div>
+            <div class="nepfdb">
+                <span class="title">Movie Database Api</span>
+                <div>
+                    <img src="images/works/nepfdb.png" width=300 alt="nepfdb"/>
+                    <div class="desc-n-link">
+                        <span>Project of developing online movie rest api build with django rest framework.</span> 
+                        <div class="links-view-code">
+                            <a href="https://github.com/lcbiplove/frutonp/" target="_blank"><span>Code</span></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -95,7 +152,7 @@
             <div class="many-more">
                 <span class="title">Many More</span>
                 <div>
-                    <span>Stay tuned to see more of my works which will be released soon.</span>
+                    <span>You can visit my github profile to see more about my other projects.</span>
                     <a href="https://github.com/lcbiplove/" target="_blank"><img src="images/github.png" alt=""> Github</a>
                 </div>
             </div>
@@ -124,7 +181,7 @@
             </div>
         </div>
         <footer>
-            &copy; Copyright 2020 - Biplove Lamichhane
+            &copy; Copyright 2021 - Biplove Lamichhane
         </footer>
     </section>
 </body>
