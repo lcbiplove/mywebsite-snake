@@ -1,14 +1,14 @@
-var bodyString = "First of all, thank you so much for being with me all these years."+
-" I am so lucky to have a girl like you who always helps me grow. "+
-" You are the one who makes me happy. I love loving you, I love" +
-" being your boyfriend and I would love even more to be called your husband."+
-" I could not have found any better girl than you. I am so proud of you. "+
-" We have stood up strong even after big fights and arguments. "+
-" We know that it is going to be more difficult in coming days, but "+
-" we will pass that test together with love, trust and understanding. "+
-" Its just our 3rd anniversary and I will be "+
-" waiting for our 80th anniversary. I am with you forever and ever."+
-" I love you forever and ever 🖤🖤🖤";
+var bodyString = "First of all, thank you so much for being with me all these years." +
+    " I am so lucky to have a girl like you who always helps me grow. " +
+    " You are the one who makes me happy. I love loving you, I love" +
+    " being your boyfriend and I would love even more to be called your husband." +
+    " I could not have found any better girl than you. I am so proud of you. " +
+    " We have stood up strong even after big fights and arguments. " +
+    " We know that it is going to be more difficult in coming days, but " +
+    " we will pass that test together with love, trust and understanding. " +
+    " Its just our 3rd anniversary and I will be " +
+    " waiting for our 80th anniversary. I am with you forever and ever." +
+    " I love you forever and ever 🖤🖤🖤";
 
 const LETTER_DATA = [
     "2023/02/07",
@@ -30,7 +30,7 @@ function loadLetter() {
         easing: 'easeInOutQuad',
         duration: 1500,
     });
-      
+
     var initialDelay = 4000
 
     // Date
@@ -109,35 +109,37 @@ function loadLetter() {
 }
 
 
-window.addEventListener("load", function(){
+window.addEventListener("load", function () {
     var textWrapper = document.querySelector('.ml14 .letters');
     textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
-    anime.timeline({loop: false})
-    .add({
-        targets: '.ml14 .line',
-        scaleX: [0,1],
-        opacity: [0.5,1],
-        easing: "easeInOutExpo",
-        duration: 1500
-    }).add({
-        targets: '.ml14 .letter',
-        opacity: [0,1],
-        translateX: [40,0],
-        translateZ: 0,
-        scaleX: [0.3, 1],
-        easing: "easeOutExpo",
-        duration: 800,
-        offset: '-=600',
-        delay: (el, i) => 150 + 25 * i
-    }).add({
+    anime.timeline({ loop: true }).add({ tragets: ".heart", top: 0 })
+
+    anime.timeline({ loop: false })
+        .add({
+            targets: '.ml14 .line',
+            scaleX: [0, 1],
+            opacity: [0.5, 1],
+            easing: "easeInOutExpo",
+            duration: 1500
+        }).add({
+            targets: '.ml14 .letter',
+            opacity: [0, 1],
+            translateX: [40, 0],
+            translateZ: 0,
+            scaleX: [0.3, 1],
+            easing: "easeOutExpo",
+            duration: 800,
+            offset: '-=600',
+            delay: (el, i) => 150 + 25 * i
+        }).add({
             targets: '.ml14',
             top: 54,
             color: "#333",
             fontSize: '26px',
             duration: 2000,
             delay: 2000,
-            complete: function(anim) {
+            complete: function (anim) {
                 loadLetter();
             }
         });
