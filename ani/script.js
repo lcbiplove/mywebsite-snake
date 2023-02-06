@@ -59,7 +59,7 @@ function loadLetter() {
     });
     typewriter.pauseFor(initialDelay).typeString(LETTER_DATA[4]).start();
 
-    initialDelay += 104000
+    initialDelay += 103000
     var typewriter = new Typewriter(document.getElementById("footerType"), {
         loop: false,
         cursor: "",
@@ -71,7 +71,32 @@ function loadLetter() {
         loop: false,
         cursor: "",
     });
-    typewriter.pauseFor(initialDelay).typeString(LETTER_DATA[6]).start();
+    typewriter.pauseFor(initialDelay).typeString(LETTER_DATA[6])
+        .pauseFor(1500)
+        .deleteAll()
+        .typeString("Bip")
+        .pauseFor(1500)
+        .deleteAll()
+        .typeString("Bestfriend")
+        .pauseFor(1500)
+        .deleteAll()
+        .typeString("Boyfriend")
+        .pauseFor(1500)
+        .deleteAll()
+        .typeString("Baby")
+        .pauseFor(1500)
+        .deleteAll()
+        .typeString("Babe")
+        .pauseFor(1500)
+        .deleteAll()
+        .typeString("Buda")
+        .pauseFor(1500)
+        .deleteAll()
+        .typeString("Pgl")
+        .pauseFor(1500)
+        .deleteAll()
+        .typeString("Everything")
+        .start();
 
 }
 
