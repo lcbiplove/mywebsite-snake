@@ -1,4 +1,3 @@
-
 var bodyString = "First of all, thank you so much for being with me all these years."+
 " I am so lucky to have a girl like you who always helps me grow. "+
 " You are the one who makes me happy. I love loving you, I love" +
@@ -23,14 +22,23 @@ const LETTER_DATA = [
 
 
 function loadLetter() {
-    var initialDelay = 2500
+    document.getElementById("paper").className = "paper";
+    anime({
+        targets: '#paper',
+        top: '0px',
+        scaleY: 1,
+        easing: 'easeInOutQuad',
+        duration: 1500,
+    });
+      
+    var initialDelay = 4000
 
     // Date
     var typewriter = new Typewriter(document.getElementById("date"), {
         loop: false,
         cursor: "",
     });
-    typewriter.typeString(LETTER_DATA[0]).start();
+    typewriter.pauseFor(2000).typeString(LETTER_DATA[0]).start();
 
     // Greeting
     var typewriter = new Typewriter(document.getElementById("greeting"), {
@@ -100,4 +108,37 @@ function loadLetter() {
 
 }
 
-loadLetter();
+
+window.addEventListener("load", function(){
+    var textWrapper = document.querySelector('.ml14 .letters');
+    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+    anime.timeline({loop: false})
+    .add({
+        targets: '.ml14 .line',
+        scaleX: [0,1],
+        opacity: [0.5,1],
+        easing: "easeInOutExpo",
+        duration: 1500
+    }).add({
+        targets: '.ml14 .letter',
+        opacity: [0,1],
+        translateX: [40,0],
+        translateZ: 0,
+        scaleX: [0.3, 1],
+        easing: "easeOutExpo",
+        duration: 800,
+        offset: '-=600',
+        delay: (el, i) => 150 + 25 * i
+    }).add({
+            targets: '.ml14',
+            top: 54,
+            color: "#333",
+            fontSize: '26px',
+            duration: 2000,
+            delay: 2000,
+            complete: function(anim) {
+                loadLetter();
+            }
+        });
+});
