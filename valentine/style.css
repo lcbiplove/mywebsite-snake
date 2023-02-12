@@ -1,35 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-color: #cc9999;
+  --back-color: #8ce4cd;
 }
 
 body {
-    font-family: 'Gamja Flower', cursive;
-    background-color: #8CE4CD;
-    color: #CC9999;
-    /* display: flex;
-    justify-content: center;
+  font-family: "Dancing Script", cursive;
+  background-color: var(--back-color);
+  color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.flex-center {
+    display: flex;
     align-items: center;
-    padding: 20px;
-    min-height: 100vh;
-    box-sizing: border-box; */
-    overflow: hidden;
+    justify-content: center;
 }
 
 #title-wrapper {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    text-align: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
 }
 
 #title-wrapper div {
+  position: relative;
+  top: -900px;
+  font-size: 2.2rem;
+  margin-right: 15px;
+  font-weight: 600;
+}
+
+svg g {
+  fill: none;
+  stroke: var(--primary-color);
+  stroke-width: 3;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+.explosion {
+  position: absolute; 
+  width: 600px;
+  height: 600px;
+  pointer-events: none;
+}
+
+.explosion .particle {
+    position: absolute; 
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: pop 1s reverse forwards;
+  }
+
+@keyframes pop {
+  from {
+    opacity: 0;
+  }
+  to {
+    top: 50%;
+    left: 50%;
+    opacity: 1;
+  }
+}
+
+
+#images-wrapper {
+    position: absolute;
+    top: 0;
+}
+
+#images-wrapper img {
     position: relative;
-    top: -900px;
-    font-size: 2rem;
-    margin-right: 15px;
+    bottom: -999px;
 }
