@@ -28,7 +28,7 @@ body {
     justify-content: center;
 }
 
-#title-wrapper {
+#title-wrapper, #title-wrapper-2 {
   position: relative;
   display: flex;
   justify-content: center;
@@ -37,12 +37,17 @@ body {
   text-align: center;
 }
 
-#title-wrapper div {
+#title-wrapper div, #title-wrapper-2 div {
   position: relative;
   top: -900px;
-  font-size: 2.2rem;
+  font-size: 2rem;
   margin-right: 15px;
   font-weight: 600;
+}
+
+#title-wrapper-2 div {
+  left: -900px;
+  top: 0;
 }
 
 svg g {
@@ -53,39 +58,13 @@ svg g {
   stroke-dashoffset: 1000;
 }
 
-.explosion {
-  position: absolute; 
-  width: 600px;
-  height: 600px;
-  pointer-events: none;
+.heart-wrapper {
+  margin-top: -80px;
 }
 
-.explosion .particle {
-    position: absolute; 
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    animation: pop 1s reverse forwards;
-  }
-
-@keyframes pop {
-  from {
-    opacity: 0;
-  }
-  to {
-    top: 50%;
-    left: 50%;
-    opacity: 1;
-  }
-}
-
-
-#images-wrapper {
-    position: absolute;
-    top: 0;
-}
-
-#images-wrapper img {
-    position: relative;
-    bottom: -999px;
+.rose {
+  position: relative;
+  width: 75px;
+  rotate: -15deg;
+  right: -999px;
 }

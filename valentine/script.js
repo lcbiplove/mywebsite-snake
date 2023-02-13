@@ -15,10 +15,16 @@ window.addEventListener("load", function () {
   });
 
   showConfetti();
+  roseClicked();
 });
 
+document.getElementById("rose").addEventListener("click", function() {
+  roseClicked();
+});
+
+
 function showConfetti() {
-  var duration = 30 * 1000;
+  var duration = 20 * 1000;
   var animationEnd = Date.now() + duration;
   var skew = 1;
   
@@ -57,7 +63,6 @@ function animateBackwards() {
   anime({
     targets: "#title-wrapper div",
     top: -999,
-    duration: 3000,
     delay: anime.stagger(1000, { start: 1000 }),
     complete: function () {
       anime({
@@ -76,10 +81,22 @@ function animateBackColors() {
     background: "#cc9999",
     duration: 3000,
     color: '#8ce4cd',
-    complete: anime({
-      targets: "#images-wrapper img",
-      bpttom: 0,
-      delay: anime.stagger(1000, { start: 1000 }),
-    }),
+    complete: function() {
+      anime({
+        targets: "#title-wrapper-2 div",
+        left:  0,
+        duration: 4000
+      }),
+
+      anime({
+        targets: ".rose",
+        right: 0,
+        duration: 4000
+      });
+    }
   });
+}
+
+function roseClicked() {
+
 }
