@@ -15,7 +15,6 @@ window.addEventListener("load", function () {
   });
 
   showConfetti();
-  roseClicked();
 });
 
 document.getElementById("rose").addEventListener("click", function() {
@@ -98,5 +97,23 @@ function animateBackColors() {
 }
 
 function roseClicked() {
+  anime({
+    targets: "#title-wrapper-2 div",
+    left:  "-999px",
+    duration: 8000,
+  }),
 
+  anime({
+    targets: ".rose",
+    right: "-999px",
+    duration: 8000,
+  });
+
+  anime({
+    targets: "#images .bubble",
+    bottom:  1000,
+    duration: 10000,
+    easing: "linear",
+    delay: anime.stagger(4000, { start: 1000 }),
+  });
 }
